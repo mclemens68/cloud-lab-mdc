@@ -1,11 +1,11 @@
 resource "aws_db_subnet_group" "db_subnet_groups" {
-  for_each   = { for k, v in local.config.vpcs : k => v if v.dbGroup }
+  for_each   = { for k, v in local.aws_config.vpcs : k => v if v.dbGroup }
   name       = each.key
-  subnet_ids = [for subnetName, v in local.config.vpcs[each.key].subnets : aws_subnet.subnets["${each.key}.${subnetName}"].id if v.public == false] 
+  subnet_ids = [for subnetName, v in local.aws_config.vpcs[each.key].subnets : aws_subnet.subnets["${each.key}.${subnetName}"].id if v.public == false] 
 }
 
 resource "aws_db_instance" "db_instances" {
-  for_each               = local.config.rdsInstances
+  for_each               = local.aws_config.rdsInstances
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_groups[each.value["vpc"]].name
   allocated_storage      = 10
   db_name                = each.key

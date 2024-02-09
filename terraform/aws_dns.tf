@@ -8,7 +8,7 @@ data "aws_route53_zone" "zone" {
 # Add DNS for public and private IPs
 resource "aws_route53_record" "ec2_public_dns" {
   provider   = aws.route53
-  for_each   = { for k, v in local.config.ec2Instances : k => v if v.publicIP }
+  for_each   = { for k, v in local.aws_config.ec2Instances : k => v if v.publicIP }
   zone_id    = data.aws_route53_zone.zone.zone_id
   name       = "${each.key}"
   type       = "A"
@@ -18,10 +18,20 @@ resource "aws_route53_record" "ec2_public_dns" {
 
 resource "aws_route53_record" "ec2_private_dns" {
   provider   = aws.route53
-  for_each = local.config.ec2Instances
+  for_each = local.aws_config.ec2Instances
   zone_id  = data.aws_route53_zone.zone.zone_id
   name     = "${each.key}-priv"
   type     = "A"
   ttl      = "30"
   records  = [aws_instance.ec2s[each.key].private_ip]
+}
+
+resource "aws_route53_record" "azure_vm_private_dns" {
+  provider   = aws.route53
+  for_each = local.azure_config.linuxVMs
+  zone_id  = data.aws_route53_zone.zone.zone_id
+  name     = "${each.key}-priv"
+  type     = "A"
+  ttl      = "30"
+  records  = [azurerm_network_interface.vminterfaces[each.key].private_ip_address]
 }

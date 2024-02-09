@@ -1,5 +1,5 @@
 resource "aws_eks_cluster" "eks_cluster" {
-  for_each = local.config.eksClusters
+  for_each = local.aws_config.eksClusters
   name     = each.key
   role_arn = aws_iam_role.role.arn
   vpc_config {
@@ -9,7 +9,7 @@ resource "aws_eks_cluster" "eks_cluster" {
 }
 
 resource "aws_eks_node_group" "eks_cluster_nodegroup" {
-  for_each = local.config.eksClusters
+  for_each = local.aws_config.eksClusters
   cluster_name    = aws_eks_cluster.eks_cluster[each.key].name
   node_group_name = "${each.key}-nodegroup"
   node_role_arn   = aws_iam_role.role.arn

@@ -1,17 +1,15 @@
 resource "aws_route_table" "public" {
-  for_each = local.config.vpcs
+  for_each = local.aws_config.vpcs
   vpc_id   = aws_vpc.vpcs[each.key].id
 
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igws[each.key].id
   }
-  dynamic route {
-    for_each = local.config.vpcs
-    content {
-      cidr_block         = "192.168.0.0/16"
-      transit_gateway_id = aws_ec2_transit_gateway.tgw.id
-    }
+  
+  route {
+    cidr_block         = "192.168.0.0/16"
+    transit_gateway_id = aws_ec2_transit_gateway.tgw.id
   }
   tags = {
     Name = "${each.key}-public-rt"
@@ -19,7 +17,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table" "private" {
-  for_each = local.config.vpcs
+  for_each = local.aws_config.vpcs
   vpc_id   = aws_vpc.vpcs[each.key].id
 
   route {
@@ -27,17 +25,21 @@ resource "aws_route_table" "private" {
     nat_gateway_id = aws_nat_gateway.ngws[each.key].id
   }
 
-  dynamic route {
-    for_each = local.config.vpcs
-    content {
-      cidr_block         = "192.168.0.0/16"
-      transit_gateway_id = aws_ec2_transit_gateway.tgw.id
-    }
+  route {
+    cidr_block         = "192.168.0.0/16"
+    transit_gateway_id = aws_ec2_transit_gateway.tgw.id
   }
-
+  
   tags = {
     Name = "${each.key}-private-rt"
   }
+}
+
+resource "aws_route" "vpn_gateway" {
+  for_each = local.azure_config.vpnConnections
+  route_table_id            = aws_route_table.public[each.value["awsVPC"]].id
+  destination_cidr_block    = each.value["azureNetwork"]
+  gateway_id                = aws_vpn_gateway.azurevpn[each.key].id
 }
 
 resource "aws_route_table_association" "public_rta" {

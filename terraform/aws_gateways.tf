@@ -1,6 +1,6 @@
 // Each VPC gets an internet gateway
 resource "aws_internet_gateway" "igws" {
-  for_each = local.config.vpcs
+  for_each = local.aws_config.vpcs
   vpc_id   = aws_vpc.vpcs[each.key].id
   tags = {
     Name = "${each.key}.igw"
@@ -9,7 +9,7 @@ resource "aws_internet_gateway" "igws" {
 
 // Each VPC gets an elastic IP for the nat gateway
 resource "aws_eip" "ngw_eips" {
-  for_each = local.config.vpcs
+  for_each = local.aws_config.vpcs
   domain   = "vpc"
   tags = {
     Name = "${each.key}-ngw-eip"
@@ -43,8 +43,42 @@ resource "aws_ec2_transit_gateway" "tgw" {
 
 // Attach the transit gateway to all subnets in the VPC
 resource "aws_ec2_transit_gateway_vpc_attachment" "tgw-attachment" {
-  for_each           = local.config.vpcs
+  for_each           = local.aws_config.vpcs
   transit_gateway_id = aws_ec2_transit_gateway.tgw.id
   vpc_id             = aws_vpc.vpcs[each.key].id
-  subnet_ids         = [for subnetName, v in local.config.vpcs[each.key].subnets : aws_subnet.subnets["${each.key}.${subnetName}"].id]
+  subnet_ids         = [for subnetName, v in local.aws_config.vpcs[each.key].subnets : aws_subnet.subnets["${each.key}.${subnetName}"].id]
+}
+
+resource "aws_customer_gateway" "azurevpn" {
+  for_each = local.azure_config.vpnConnections
+  bgp_asn    = 65000
+  ip_address = azurerm_public_ip.vgw_pip[each.key].ip_address
+  type       = "ipsec.1"
+
+  tags = {
+    Name = "azure-vpn-cgw"
+  }
+}
+
+resource "aws_vpn_gateway" "azurevpn" {
+  for_each = local.azure_config.vpnConnections
+  vpc_id = aws_vpc.vpcs[each.value["awsVPC"]].id
+  tags = {
+    Name = "azure-vpn-gw"
+  }
+}
+
+resource "aws_vpn_connection" "azurevpn" {
+  for_each = local.azure_config.vpnConnections
+  customer_gateway_id = aws_customer_gateway.azurevpn[each.key].id
+  vpn_gateway_id = aws_vpn_gateway.azurevpn[each.key].id
+  type = aws_customer_gateway.azurevpn[each.key].type
+  static_routes_only = true
+  
+}
+
+resource "aws_vpn_connection_route" "azurevpn" {
+  for_each = local.azure_config.vpnConnections
+  destination_cidr_block = each.value["azureNetwork"]
+  vpn_connection_id      = aws_vpn_connection.azurevpn[each.key].id
 }

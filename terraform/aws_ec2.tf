@@ -1,5 +1,5 @@
 data "aws_ami" "amis" {
-  for_each    = local.config.amis
+  for_each    = local.aws_config.amis
   owners      = [each.value["owner"]]
   most_recent = true
   filter {
@@ -13,7 +13,7 @@ data "aws_ami" "amis" {
 }
 
 resource "aws_instance" "ec2s" {
-  for_each                    = local.config.ec2Instances
+  for_each                    = local.aws_config.ec2Instances
   ami                         = data.aws_ami.amis[each.value["ami"]].id
   instance_type               = each.value["type"]
   subnet_id                   = aws_subnet.subnets[each.value["subnet"]].id

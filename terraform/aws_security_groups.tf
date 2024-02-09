@@ -17,10 +17,10 @@ resource "aws_ec2_managed_prefix_list" "rfc1918" {
 resource "aws_ec2_managed_prefix_list" "admin" {
   name           = "admin"
   address_family = "IPv4"
-  max_entries    = length(local.config.admin_cidr_list)
+  max_entries    = length(local.aws_config.admin_cidr_list)
 
   dynamic "entry" {
-    for_each = local.config.admin_cidr_list
+    for_each = local.aws_config.admin_cidr_list
 
     content {
       cidr = entry.value
@@ -29,13 +29,13 @@ resource "aws_ec2_managed_prefix_list" "admin" {
 }
 
 resource "aws_security_group" "base" {
-  for_each    = local.config.vpcs
+  for_each    = local.aws_config.vpcs
   name        = "${each.key}-base"
   description = "default rules for lab workloads"
   vpc_id      = aws_vpc.vpcs[each.key].id
 
   dynamic "ingress" {
-    for_each = local.config.allowedPorts.private
+    for_each = local.aws_config.allowedPorts.private
     content {
       from_port       = ingress.value
       to_port         = ingress.value
@@ -45,7 +45,7 @@ resource "aws_security_group" "base" {
   }
 
   dynamic "ingress" {
-    for_each = local.config.allowedPorts.public
+    for_each = local.aws_config.allowedPorts.public
     content {
       from_port   = ingress.value
       to_port     = ingress.value
