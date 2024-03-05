@@ -2,3 +2,11 @@
 *terraform.tfstate.backup
 *terraform.tfstate
 *.DS_store
+letsencrypt/config/*
+letsencrypt/logs/*
+renew-cert.sh
+generate-cert.sh
+*.rpm
+*.bz2
+*.crt
+*.key

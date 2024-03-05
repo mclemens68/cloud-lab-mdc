@@ -1,25 +1,25 @@
 [web]
-fin-dev-web01-priv.segmentationpov.com
-fin-prd-web01-priv.segmentationpov.com
-fin-prd-web02-priv.segmentationpov.com
-fin-prd-web03-priv.segmentationpov.com
+fin-dev-web01.lot48labs.com
+fin-prd-web01.lot48labs.com
+fin-prd-web02.lot48labs.com
+fin-prd-web03.lot48labs.com
 
 [web:vars]
 port=443
 
 [app]
-fin-prd-app01-priv.segmentationpov.com
-fin-prd-app02-priv.segmentationpov.com
-fin-prd-app03-priv.segmentationpov.com
-fin-dev-app01-priv.segmentationpov.com
+fin-prd-app01.lot48labs.com
+fin-prd-app02.lot48labs.com
+fin-prd-app03.lot48labs.com
+fin-dev-app01.lot48labs.com
 
 [app:vars]
 port=8080
 
 [db]
-fin-prd-db01-priv.segmentationpov.com
-fin-prd-db02-priv.segmentationpov.com
-fin-dev-db01-priv.segmentationpov.com
+fin-prd-db01.lot48labs.com
+fin-prd-db02.lot48labs.com
+fin-dev-db01.lot48labs.com
 
 [db:vars]
 port=3306
@@ -29,6 +29,13 @@ web
 app
 db
 
-[linux:vars]
+[azure_jh]
+jumphost02.lot48labs.com
+
+[aws_jh]
+jumphost01-priv.lot48labs.com
+
+[all:vars]
 ansible_user=centos
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+

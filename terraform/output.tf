@@ -22,9 +22,15 @@ output "aws_rds_instances" {
 output "azure_vm_private_ip" {
   value = { for k, v in azurerm_network_interface.vminterfaces : k => v.private_ip_address }
 }
+output "azure_vm_public_ip" {
+  value = { for k, v in azurerm_public_ip.public_ip : k => v.ip_address }
+}
 output "azure_private_dns" {
   value = { for k, v in aws_route53_record.azure_vm_private_dns : k => "${v.name}.${data.aws_route53_zone.zone.name}" }
 }
-output "route_debug" {
-  value = aws_route.vpn_gateway
+output "azure_public_dns" {
+  value = { for k, v in aws_route53_record.azure_vm_public_dns : k => "${v.name}.${data.aws_route53_zone.zone.name}" }
 }
+# output "azure_subnets"{
+#    value = { for k, v in merge(azurerm_subnet.subnets, azurerm_subnet.db_subnets) : k => v }
+# }

@@ -1,0 +1,11 @@
+---
+location: East US
+resourceGroup: ""
+vnets: {}
+vnetPairings: {}
+vpnConnections: {}
+networkSecurityGroups: {}
+public_sshkey: "~/.ssh/id_rsa.pub"
+private_sshkey: "~/.ssh/id_rsa"
+windowsVMs: {}
+linuxVMs: {}

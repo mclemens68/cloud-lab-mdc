@@ -39,7 +39,7 @@ resource "aws_key_pair" "auth" {
 
 // Enable VPC flow logging for all VPCs
 resource "aws_flow_log" "vpc_flow_log" {
-  for_each             = local.aws_config.vpcs
+  for_each = { for k, v in local.aws_config.vpcs : k => v if v.logFlows }
   log_destination      = local.aws_config.s3FlowLogArn
   log_destination_type = "s3"
   traffic_type         = "ALL"
