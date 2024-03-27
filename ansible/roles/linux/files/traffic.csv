@@ -17,6 +17,9 @@ fin-prd-app02.lot48labs.com,fin-prd-db01.lot48labs.com,3306
 fin-prd-app02.lot48labs.com,fin-prd-db02.lot48labs.com,3306
 fin-prd-app03.lot48labs.com,fin-prd-db01.lot48labs.com,3306
 fin-prd-app03.lot48labs.com,fin-prd-db02.lot48labs.com,3306
+fin-prd-app01.lot48labs.com,se32db01.lot48labs.com,3306
+fin-prd-app02.lot48labs.com,se32db01.lot48labs.com,3306
+fin-prd-app03.lot48labs.com,se32db01.lot48labs.com,3306
 fin-prd-db01.lot48labs.com,fin-prd-db02.lot48labs.com,3306
 fin-prd-db02.lot48labs.com,fin-prd-db01.lot48labs.com,3306
 hrm-dev-web01.lot48labs.com,hrm-dev-app01.lot48labs.com,8080

@@ -41,4 +41,4 @@
   cron:
     name: traffic generator
     minute: "*/10"  # Run every 10 minutes
-    job: "/opt/traffic-generator traffic /etc/traffic-generator/aws-traffic.csv"
+    job: "/opt/traffic-generator traffic /etc/traffic-generator/traffic.csv"
