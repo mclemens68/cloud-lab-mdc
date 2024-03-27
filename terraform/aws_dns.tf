@@ -46,3 +46,13 @@ resource "aws_route53_record" "azure_vm_public_dns" {
   records  = [azurerm_public_ip.public_ip[each.key].ip_address]
 }
 
+resource "aws_route53_record" "rds_private_dns" {
+  provider = aws.personal
+  for_each = local.aws_config.rdsInstances
+  zone_id  = data.aws_route53_zone.zone.zone_id
+  name     = each.key
+  type     = "CNAME"
+  ttl      = "30"
+  records  = [aws_db_instance.db_instances[each.key].address]
+}
+
