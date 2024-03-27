@@ -71,7 +71,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-1
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: jump
@@ -79,7 +79,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-1
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: web
@@ -88,7 +88,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-1
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: web
@@ -97,7 +97,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-1
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: web
@@ -106,7 +106,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: app
@@ -115,7 +115,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: app
@@ -124,7 +124,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: app
@@ -133,7 +133,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: db
@@ -142,7 +142,7 @@ linuxVMs:
     vnet: vnet-1
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: db
@@ -151,7 +151,7 @@ linuxVMs:
     vnet: vnet-2
     subnet: subnet-1
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: web
@@ -160,7 +160,7 @@ linuxVMs:
     vnet: vnet-2
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: app
@@ -169,7 +169,7 @@ linuxVMs:
     vnet: vnet-2
     subnet: subnet-2
     nsg: baseline
-    size: Standard_DS2_v2
+    size: Standard_B1s
     publicIP: false
     tags:
       type: db
@@ -178,3 +178,7 @@ managedDBs: {}
   # bp-1917-se32-sql01:
   #   vnet: vnet-1
   #   subnet: DBSubnet
+aksClusters:
+  cluster01:
+    nodeCount: 3
+    adminUserName: "k8sadmin"
