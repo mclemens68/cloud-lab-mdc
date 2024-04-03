@@ -180,5 +180,5 @@ managedDBs: {}
   #   subnet: DBSubnet
 aksClusters:
   cluster01:
-    nodeCount: 3
+    nodeCount: 2
     adminUserName: "k8sadmin"
