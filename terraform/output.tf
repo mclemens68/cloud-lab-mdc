@@ -31,6 +31,6 @@ output "azure_private_dns" {
 output "azure_public_dns" {
   value = { for k, v in aws_route53_record.azure_vm_public_dns : k => "${v.name}.${data.aws_route53_zone.zone.name}" }
 }
-# output "azure_subnets"{
-#    value = { for k, v in merge(azurerm_subnet.subnets, azurerm_subnet.db_subnets) : k => v }
-# }
+output "azure_aks_clusters" {
+  value = { for k, v in azurerm_kubernetes_cluster.aks : k => v.name }
+}

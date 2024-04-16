@@ -40,6 +40,20 @@ ec2Instances:
     publicIP: true
     tags:
       type: pce
+  lw01:
+    vpc: pce-vpc
+    subnet: vpc-1.subnet-1
+    ami: centos7
+    type: t3.micro
+    volSizeGb: 8
+    publicIP: true
+  lw02:
+    vpc: pce-vpc
+    subnet: vpc-1.subnet-1
+    ami: centos7
+    type: t3.micro
+    volSizeGb: 8
+    publicIP: true
 eksClusters: {}
 rdsInstances: {}
 allowedPorts:

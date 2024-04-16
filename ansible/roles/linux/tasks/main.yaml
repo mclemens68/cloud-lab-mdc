@@ -34,7 +34,7 @@
 
 - name: copy traffic-generator traffic file
   ansible.builtin.copy:
-    src: aws-traffic.csv
+    src: traffic.csv
     dest: /etc/traffic-generator/
 
 - name: run traffic every 10 minutes

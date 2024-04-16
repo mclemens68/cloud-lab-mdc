@@ -1,0 +1,12 @@
+[pce]
+pce.lot48labs.com 
+
+[pce:vars]
+org="pitta-lab"
+user_full_name="Brian Pitta"
+user_email="brian.pitta@illumio.com"  
+domain="lot48labs.com"
+user_pwd="Illumio123"
+sdek="HN45NIRfeURhceajznWpmg=="
+ansible_user=centos
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'

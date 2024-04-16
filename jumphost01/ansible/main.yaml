@@ -1,0 +1,20 @@
+---
+- hosts: linux
+  roles:
+    - linux
+
+- hosts: aws_jh
+  roles:
+    - aws-jumphost
+
+- hosts: azure_jh
+  roles: 
+    - azure-jumphost
+
+- hosts: pce
+  roles:
+    - pce
+  become: true
+  tags:
+    - never
+    - pce
