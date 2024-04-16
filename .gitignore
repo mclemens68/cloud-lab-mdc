@@ -10,3 +10,4 @@ generate-cert.sh
 *.bz2
 *.crt
 *.key
+terraform/config-files/pce-*.yaml
