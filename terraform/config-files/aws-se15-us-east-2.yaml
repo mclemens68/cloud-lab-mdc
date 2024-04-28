@@ -1,7 +1,7 @@
 ---
 region: us-east-2
 s3FlowLogArn: "arn:aws:s3:::global-vpc-flow-logs-se15" # Not creating an S3 bucket so it's always available and never destroyed.
-dnsZone: "lot48labs.com"
+dnsZone: "clemenslabs.com"
 vpcs:
   # Don't delete jump-vpc as it's use for the VPN connection to Azure
   jump-vpc:

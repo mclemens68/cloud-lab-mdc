@@ -1,11 +1,11 @@
 [pce]
-pce.lot48labs.com 
+pce.clemenslabs.com 
 
 [pce:vars]
-org="pitta-lab"
-user_full_name="Brian Pitta"
-user_email="brian.pitta@illumio.com"  
-domain="lot48labs.com"
+org="clemens-lab"
+user_full_name="Matt Clemens"
+user_email="matt.clemens@illumio.com"  
+domain="clemenslabs.com"
 user_pwd="Illumio123"
 sdek="HN45NIRfeURhceajznWpmg=="
 ansible_user=centos

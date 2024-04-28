@@ -1,25 +1,25 @@
 [web]
-fin-dev-web01.lot48labs.com
-fin-prd-web01.lot48labs.com
-fin-prd-web02.lot48labs.com
-fin-prd-web03.lot48labs.com
+fin-dev-web01.clemenslabs.com
+fin-prd-web01.clemenslabs.com
+fin-prd-web02.clemenslabs.com
+fin-prd-web03.clemenslabs.com
 
 [web:vars]
 port=443
 
 [app]
-fin-prd-app01.lot48labs.com
-fin-prd-app02.lot48labs.com
-fin-prd-app03.lot48labs.com
-fin-dev-app01.lot48labs.com
+fin-prd-app01.clemenslabs.com
+fin-prd-app02.clemenslabs.com
+fin-prd-app03.clemenslabs.com
+fin-dev-app01.clemenslabs.com
 
 [app:vars]
 port=8080
 
 [db]
-fin-prd-db01.lot48labs.com
-fin-prd-db02.lot48labs.com
-fin-dev-db01.lot48labs.com
+fin-prd-db01.clemenslabs.com
+fin-prd-db02.clemenslabs.com
+fin-dev-db01.clemenslabs.com
 
 [db:vars]
 port=3306
@@ -30,10 +30,10 @@ app
 db
 
 [azure_jh]
-jumphost02.lot48labs.com
+jumphost02.clemenslabs.com
 
 [aws_jh]
-jumphost01-priv.lot48labs.com
+jumphost01-priv.clemenslabs.com
 
 [all:vars]
 ansible_user=centos
