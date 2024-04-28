@@ -176,7 +176,7 @@ linuxVMs:
       type: db
       app: hrm
 managedDBs: {}
-  # bp-1917-se32-sql01:
+  # mdc-se15-sql01:
   #   vnet: vnet-1
   #   subnet: DBSubnet
 aksClusters:

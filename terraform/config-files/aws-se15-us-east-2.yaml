@@ -199,7 +199,7 @@ eksClusters: {}
   #   - vpc-1.subnet-3
   #   clusterNodeGroupSize: 3
 rdsInstances:
-  se32db01:
+  se15db01:
     engine: mysql
     engineVersion: 5.7
     instanceClass: db.t3.micro
