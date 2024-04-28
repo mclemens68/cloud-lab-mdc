@@ -3,11 +3,11 @@ provider "aws" {
   profile = "se15"
 }
 
-provider "aws" {
-  alias   = "route53"
-  profile = "demosales"
-  region  = local.aws_config.region
-}
+#provider "aws" {
+#  alias   = "route53"
+#  profile = "demosales"
+#  region  = local.aws_config.region
+#}
 
 
 provider "aws" {
