@@ -201,7 +201,7 @@ eksClusters: {}
 rdsInstances:
   se15db01:
     engine: mysql
-    engineVersion: 5.7
+    engineVersion: 8.0
     instanceClass: db.t3.micro
     vpc: vpc-1
 allowedPorts:

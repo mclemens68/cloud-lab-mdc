@@ -11,3 +11,5 @@ generate-cert.sh
 *.crt
 *.key
 terraform/config-files/pce-*.yaml
+workloader.log
+plan.run
