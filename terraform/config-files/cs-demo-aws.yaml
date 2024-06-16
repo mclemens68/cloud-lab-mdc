@@ -1,7 +1,5 @@
 ---
 region: us-east-2
-s3FlowLogArn: "arn:aws:s3:::global-vpc-flow-logs-se32" # Not creating an S3 bucket so it's always available and never destroyed.
-dnsZone: "lot48labs.com"
 vpcs:
   # Don't delete jump-vpc as it's use for the VPN connection to Azure
   jump-vpc:
@@ -54,8 +52,9 @@ admin_cidr_list:
 - 67.207.111.16/29
 - 12.169.99.40/29
 - 142.215.161.228/30
-- 142.215.23.80/28
-- 73.126.215.103/32 # home IP
+- 142.215.23.80/28 # Illumio VPN
+- 73.51.167.180/32 # home IP
+- 172.58.120.0/21 # Michigan IP
 amis:
   centos7:
     ami: CentOS Linux 7 x86_64 - 2211
@@ -198,9 +197,9 @@ eksClusters: {}
   #   - vpc-1.subnet-3
   #   clusterNodeGroupSize: 3
 rdsInstances:
-  se32db01:
+  rdsdb01:
     engine: mysql
-    engineVersion: 5.7
+    engineVersion: 8.0.36
     instanceClass: db.t3.micro
     vpc: vpc-1
 allowedPorts:

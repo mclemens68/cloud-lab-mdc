@@ -1,6 +1,5 @@
 ---
 location: East US
-resourceGroup: se-15-rg
 vnets:
   vnet-1:
     addressSpace: 10.1.0.0/16
@@ -175,10 +174,10 @@ linuxVMs:
     tags:
       type: db
       app: hrm
-managedDBs: {}
-  # mdc-se15-sql01:
-  #   vnet: vnet-1
-  #   subnet: DBSubnet
+managedDBs:
+   sql01:
+     vnet: vnet-1
+     subnet: DBSubnet
 aksClusters:
   cluster01:
     nodeCount: 2

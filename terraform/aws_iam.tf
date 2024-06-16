@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 resource "aws_iam_role" "role" {
-  name               =replace(replace(replace("${var.aws_config}-terraform-role-eks","/","-"),"\\","-"),".","-")
+  name               =replace(replace(replace("${local.aws_yaml_file}-terraform-role-eks","/","-"),"\\","-"),".","-")
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "policy" {
 }
 
 resource "aws_iam_policy" "policy" {
-name               =replace(replace(replace("${var.aws_config}-terraform-all-policy","/","-"),"\\","-"),".","-")
+name               =replace(replace(replace("${local.aws_yaml_file}-terraform-all-policy","/","-"),"\\","-"),".","-")
   description = "An open policy for Terraform to use."
   policy      = data.aws_iam_policy_document.policy.json
 }

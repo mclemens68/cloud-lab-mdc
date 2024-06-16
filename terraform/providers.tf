@@ -1,6 +1,6 @@
 provider "aws" {
   region  = local.aws_config.region
-  profile = "se15"
+  profile = "${var.se_account}"
 }
 
 #provider "aws" {
@@ -18,16 +18,4 @@ provider "aws" {
 
 provider "azurerm" {
   features {}
-}
-
-variable "aws_config" {
-  type        = string
-  description = "aws config file"
-  default     = "config-files/aws-se15-us-east-2.yaml"
-}
-
-variable "azure_config" {
-  type        = string
-  description = "azure config file"
-  default     = "config-files/azure-se15-east-us.yaml"
 }
