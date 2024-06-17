@@ -17,9 +17,9 @@ fin-prd-app02.clemenslabs.com,fin-prd-db01.clemenslabs.com,3306
 fin-prd-app02.clemenslabs.com,fin-prd-db02.clemenslabs.com,3306
 fin-prd-app03.clemenslabs.com,fin-prd-db01.clemenslabs.com,3306
 fin-prd-app03.clemenslabs.com,fin-prd-db02.clemenslabs.com,3306
-fin-prd-app01.clemenslabs.com,se15db01.clemenslabs.com,3306
-fin-prd-app02.clemenslabs.com,se15db01.clemenslabs.com,3306
-fin-prd-app03.clemenslabs.com,se15db01.clemenslabs.com,3306
+fin-prd-app01.clemenslabs.com,rdsdb01.clemenslabs.com,3306
+fin-prd-app02.clemenslabs.com,rdsdb01.clemenslabs.com,3306
+fin-prd-app03.clemenslabs.com,rdsdb01.clemenslabs.com,3306
 fin-prd-db01.clemenslabs.com,fin-prd-db02.clemenslabs.com,3306
 fin-prd-db02.clemenslabs.com,fin-prd-db01.clemenslabs.com,3306
 hrm-dev-web01.clemenslabs.com,hrm-dev-app01.clemenslabs.com,8080
