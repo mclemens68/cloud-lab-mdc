@@ -78,9 +78,9 @@ resource "azurerm_network_interface" "vminterfaces" {
     }
   }
 
-  // Dummy ip_configuration block to ensure at least one block is present - needed if no Azure VM's are included
-  dynamic "ip_configuration" {
-    for_each = local.azure_config.azure_has_vms ? {} : { "dummy" = {} }
+ // Dummy ip_configuration block to ensure at least one block is present - needed if no Azure VM's are included
+    dynamic "ip_configuration" {
+    for_each = length(local.azure_config.linuxVMs) + length(local.azure_config.windowsVMs) > 0 ? {} : { "dummy" = {} }
     content {
       name                          = "dummy"
       subnet_id                     = azurerm_subnet.subnets["${each.value["vnet"]}.${each.value["subnet"]}"].id
