@@ -47,14 +47,6 @@ vpcs:
     dbGroup: false
 public_sshkey: "~/.ssh/id_rsa.pub"
 private_sshkey: "~/.ssh/id_rsa"
-admin_cidr_list:
-- 63.251.234.64/28
-- 67.207.111.16/29
-- 12.169.99.40/29
-- 142.215.161.228/30
-- 142.215.23.80/28 # Illumio VPN
-- 73.51.167.180/32 # home IP
-- 172.58.120.0/21 # Michigan IP
 amis:
   centos7:
     ami: CentOS Linux 7 x86_64 - 2211

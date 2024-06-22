@@ -10,6 +10,7 @@ locals {
     { 
       s3FlowLogArn = "arn:aws:s3:::global-vpc-flow-logs-${var.se_account}" # Not creating an S3 bucket so it's always available and never destroyed.
       dnsZone = "${var.domain}"
+      admin_cidr_list = "${var.admin_cidr_list}"
     }
   ) 
 
@@ -18,6 +19,7 @@ locals {
     local.azure_config_temp, 
     { 
       resourceGroup = "${terraform.workspace}-${var.az-rg}"
+      admin_cidr_list = "${var.admin_cidr_list}"
     }
   ) 
 

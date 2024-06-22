@@ -11,4 +11,3 @@ generate-cert.sh
 *.crt
 *.key
 workloader.log
-plan.run
