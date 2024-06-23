@@ -1,4 +1,29 @@
 ---
+- hosts: localhost
+  gather_facts: no
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Generate azure.hosts from template
+      template:
+        src: azure.hosts.j2
+        dest: azure.hosts
+
+    - name: Generate aws.hosts from template
+      template:
+        src: aws.hosts.j2
+        dest: aws.hosts
+
+    - name: Generate pce.hosts from template
+      template:
+        src: pce.hosts.j2
+        dest: pce.hosts
+
+    - name: Generate traffic.csv from template
+      template:
+        src: roles/linux/files/traffic.csv.j2
+        dest: roles/linux/files/traffic.csv
+
 - hosts: linux
   roles:
     - linux

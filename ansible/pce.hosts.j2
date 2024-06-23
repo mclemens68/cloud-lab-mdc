@@ -1,0 +1,12 @@
+[pce]
+{{ pce_hostname }}.{{ domain }}
+
+[pce:vars]
+org="{{ org }}"
+user_full_name="{{ user_full_name }}"
+user_email="{{ user_email }}"  
+domain="{{ domain }}"
+user_pwd="{{ user_pwd }}"
+sdek="HN45NIRfeURhceajznWpmg=="
+ansible_user=centos
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'

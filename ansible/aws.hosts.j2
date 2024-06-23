@@ -1,0 +1,41 @@
+[web]
+fin-dev-web01.{{ domain }}
+fin-prd-web01.{{ domain }}
+fin-prd-web02.{{ domain }}
+fin-prd-web03.{{ domain }}
+
+[web:vars]
+port=443
+
+[app]
+fin-prd-app01.{{ domain }}
+fin-prd-app02.{{ domain }}
+fin-prd-app03.{{ domain }}
+fin-dev-app01.{{ domain }}
+
+[app:vars]
+port=8080
+
+[db]
+fin-prd-db01.{{ domain }}
+fin-prd-db02.{{ domain }}
+fin-dev-db01.{{ domain }}
+
+[db:vars]
+port=3306
+
+[linux:children]
+web
+app
+db
+
+[azure_jh]
+jumphost02.{{ domain }}
+
+[aws_jh]
+jumphost01-priv.{{ domain }}
+
+[all:vars]
+ansible_user=centos
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+

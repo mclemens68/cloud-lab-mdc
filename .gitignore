@@ -11,3 +11,7 @@ generate-cert.sh
 *.crt
 *.key
 workloader.log
+ansible/pce.hosts
+ansible/aws.hosts
+ansible/azure.hosts
+ansible/roles/linux/files/traffic.csv

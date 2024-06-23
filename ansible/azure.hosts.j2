@@ -1,0 +1,34 @@
+[web]
+hrm-dev-web01.{{ domain }}
+hrm-prd-web01.{{ domain }}
+hrm-prd-web02.{{ domain }}
+hrm-prd-web03.{{ domain }}
+
+[web:vars]
+port=443
+
+[app]
+hrm-prd-app01.{{ domain }}
+hrm-prd-app02.{{ domain }}
+hrm-prd-app03.{{ domain }}
+hrm-dev-app01.{{ domain }}
+
+[app:vars]
+port=8080
+
+[db]
+hrm-prd-db01.{{ domain }}
+hrm-prd-db02.{{ domain }}
+hrm-dev-db01.{{ domain }}
+
+[db:vars]
+port=3306
+
+[linux:children]
+web
+app
+db
+
+[linux:vars]
+ansible_user=centos
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'

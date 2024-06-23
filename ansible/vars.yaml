@@ -1,0 +1,9 @@
+# Domain name
+domain: "clemenslabs.com"
+
+# PCE variables
+pce_hostname: "pce"
+org: "clemens-lab"
+user_full_name: "Matt Clemens"
+user_email: "matt.clemens@illumio.com"
+user_pwd: "Illumio123"
