@@ -18,7 +18,7 @@ locals {
   azure_config = merge(
     local.azure_config_temp, 
     { 
-      resourceGroup = "${terraform.workspace}-${var.az-rg}"
+      resourceGroup = "${terraform.workspace}-${var.se_account}"
       admin_cidr_list = "${var.admin_cidr_list}"
     }
   ) 

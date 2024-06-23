@@ -1,6 +1,5 @@
 se_account  = "se15"
 domain      = "clemenslabs.com"
-az-rg       = "se-15-rg"
 admin_cidr_list = [
 # "63.251.234.64/28"
 # "67.207.111.16/29"
