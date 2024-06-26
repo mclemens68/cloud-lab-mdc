@@ -8,10 +8,10 @@ resource "azurerm_linux_virtual_machine" "linuxVMs" {
   ]
 
   size           = each.value["size"]
-  admin_username = "centos"
+  admin_username = "ubuntu"
 
   admin_ssh_key {
-    username   = "centos"
+    username   = "ubuntu"
     public_key = file(local.aws_config.public_sshkey)
   }
 
@@ -21,9 +21,9 @@ resource "azurerm_linux_virtual_machine" "linuxVMs" {
   }
 
   source_image_reference {
-    publisher = "OpenLogic"
-    offer     = "CentOS"
-    sku       = "7_9"
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
   tags = each.value.tags
