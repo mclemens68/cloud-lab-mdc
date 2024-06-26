@@ -32,10 +32,13 @@ db
 [azure_jh]
 jumphost02.{{ domain }}
 
-[aws_jh]
+[aws_jh_priv]
 jumphost01-priv.{{ domain }}
 
+[aws_jh_pub]
+jumphost01.{{ domain }}
+
 [all:vars]
-ansible_user=centos
+ansible_user=ubuntu
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
 

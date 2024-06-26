@@ -1,0 +1,1 @@
+ansible-playbook main.yaml --limit aws_jh_pub --tags aws_jh_pub -i aws.hosts

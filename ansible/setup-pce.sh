@@ -1,0 +1,1 @@
+ansible-playbook main.yaml --limit pce --tags pce -i aws.hosts

@@ -1,5 +1,16 @@
+[splunk]
+splunk.{{ domain }} centos_version=7
+
+[wklds]
+lw01.{{ domain }} centos_version=7
+lw02.{{ domain }} centos_version=7
+
+[linux:children]
+splunk
+wklds
+
 [pce]
-{{ pce_hostname }}.{{ domain }}
+{{ pce_hostname }}.{{ domain }} centos_version=7
 
 [pce:vars]
 org="{{ org }}"

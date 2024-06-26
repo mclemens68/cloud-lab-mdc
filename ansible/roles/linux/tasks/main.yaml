@@ -28,8 +28,8 @@
     path: /etc/traffic-generator/
     state: directory
     mode: '0755'
-    owner: centos
-    group: centos
+    owner: ubuntu
+    group: ubuntu
   become: true
 
 - name: copy traffic-generator traffic file
