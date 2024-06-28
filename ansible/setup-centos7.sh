@@ -1,1 +1,0 @@
-ansible-playbook main.yaml --limit pce --tags centos7 -i pce.hosts

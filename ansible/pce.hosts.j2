@@ -1,16 +1,17 @@
 [splunk]
-splunk.{{ domain }} centos_version=7
+splunk.{{ domain }}
 
 [wklds]
-lw01.{{ domain }} centos_version=7
-lw02.{{ domain }} centos_version=7
+lw01.{{ domain }}
+lw02.{{ domain }}
+
+[pce]
+{{ pce_hostname }}.{{ domain }}
 
 [linux:children]
 splunk
 wklds
-
-[pce]
-{{ pce_hostname }}.{{ domain }} centos_version=7
+pce
 
 [pce:vars]
 org="{{ org }}"
@@ -19,5 +20,7 @@ user_email="{{ user_email }}"
 domain="{{ domain }}"
 user_pwd="{{ user_pwd }}"
 sdek="HN45NIRfeURhceajznWpmg=="
+
+[all:vars]
 ansible_user=centos
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'

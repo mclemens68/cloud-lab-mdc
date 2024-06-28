@@ -10,6 +10,8 @@ locals {
     { 
       s3FlowLogArn = "arn:aws:s3:::global-vpc-flow-logs-${var.se_account}" # Not creating an S3 bucket so it's always available and never destroyed.
       dnsZone = "${var.domain}"
+      public_sshkey = "~/.ssh/${var.sshkey}.pub"
+      private_sshkey = "~/.ssh/${var.sshkey}" 
       admin_cidr_list = "${var.admin_cidr_list}"
     }
   ) 
