@@ -12,3 +12,17 @@
     minute: "0"
     hour: "*"
     job: "scp -r /home/ubuntu/ansible/ jumphost02.{{ domain }}:/home/ubuntu/"
+
+- name: update all other aws servers and azure jumphost every day at 6am
+  cron:
+    name: update servers
+    minute: "0"
+    hour: "6"
+    job: "/usr/bin/ansible-playbook /home/ubuntu/ansible/update-servers.yaml -i /home/ubuntu/ansible/aws.hosts"
+
+- name: Reboot aws jumphost every day at 7:00am
+  cron:
+    name: reboot server
+    minute: "0"
+    hour: "7"
+    job: "sudo reboot"

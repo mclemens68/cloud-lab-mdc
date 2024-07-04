@@ -59,12 +59,11 @@
         state: directory
         mode: '0755'
     - name: Copy contents to /home/ubuntu/ansible on the remote host
-      ansible.builtin.copy:
+      ansible.posix.synchronize:
         src: ./  # Adjust this path to the directory you want to copy from, if necessary
         dest: /home/ubuntu/ansible
-        remote_src: no
-        directory_mode: '0755'
-        force: yes
+        rsync_opts:
+          - "--exclude=roles/pce/"
     - name: Copy SSH key to /home/ubuntu/.ssh on the remote host
       ansible.builtin.copy:
         src: ~/.ssh/{{ sshkey }}
