@@ -8,11 +8,6 @@ lw02.{{ domain }}
 [pce]
 {{ pce_hostname }}.{{ domain }}
 
-[linux:children]
-splunk
-wklds
-pce
-
 [pce:vars]
 org="{{ org }}"
 user_full_name="{{ user_full_name }}"
