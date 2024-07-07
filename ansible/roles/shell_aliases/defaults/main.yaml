@@ -1,6 +1,6 @@
 ---
 bash_aliases:
-  - alias ll='ls -la'
+  - alias ll='ls -l'
   - alias gs='git status'
   - alias gd='git diff'
   - alias rm='rm -i'

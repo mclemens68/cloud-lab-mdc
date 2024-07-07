@@ -18,6 +18,8 @@
     name: 
       - "/tmp/{{ item.path | basename }}"
     state: present
+    disable_gpg_check: yes
+
   with_items: "{{ rpm_files.files }}"
 
 - name: find ui rpm in local directory
@@ -39,6 +41,7 @@
     name: 
       - "/tmp/{{ item.path | basename }}"
     state: present
+    disable_gpg_check: yes
   with_items: "{{ ui_rpm_files.files }}"
 
 
