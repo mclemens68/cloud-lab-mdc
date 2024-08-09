@@ -87,9 +87,6 @@
 
 - name: Setup Azure jumphost
   hosts: azure_jh
-  tags:
-    - never
-    - pce
   vars_files:
     - vars.yaml
   roles: 
@@ -105,6 +102,9 @@
 
 - name: Setup PCE
   hosts: pce
+  tags:
+    - never
+    - pce
   vars_files:
     - vars.yaml
   roles:
