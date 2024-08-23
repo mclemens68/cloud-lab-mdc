@@ -8,10 +8,10 @@ resource "azurerm_linux_virtual_machine" "linuxVMs" {
   ]
 
   size           = each.value["size"]
-  admin_username = "centos"
+  admin_username = "ubuntu"
 
   admin_ssh_key {
-    username   = "centos"
+    username   = "ubuntu"
     public_key = file(local.aws_config.public_sshkey)
   }
 
@@ -21,9 +21,9 @@ resource "azurerm_linux_virtual_machine" "linuxVMs" {
   }
 
   source_image_reference {
-    publisher = "OpenLogic"
-    offer     = "CentOS"
-    sku       = "7_9"
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
     version   = "latest"
   }
   tags = each.value.tags
@@ -73,6 +73,16 @@ resource "azurerm_network_interface" "vminterfaces" {
     for_each = { for k, v in merge(local.azure_config.linuxVMs, local.azure_config.windowsVMs) : k => v if v.publicIP == false && k == each.key }
     content {
       name                          = each.key
+      subnet_id                     = azurerm_subnet.subnets["${each.value["vnet"]}.${each.value["subnet"]}"].id
+      private_ip_address_allocation = "Dynamic"
+    }
+  }
+
+ // Dummy ip_configuration block to ensure at least one block is present - needed if no Azure VM's are included
+    dynamic "ip_configuration" {
+    for_each = length(local.azure_config.linuxVMs) + length(local.azure_config.windowsVMs) > 0 ? {} : { "dummy" = {} }
+    content {
+      name                          = "dummy"
       subnet_id                     = azurerm_subnet.subnets["${each.value["vnet"]}.${each.value["subnet"]}"].id
       private_ip_address_allocation = "Dynamic"
     }

@@ -10,4 +10,7 @@ generate-cert.sh
 *.bz2
 *.crt
 *.key
-terraform/config-files/pce-*.yaml
+workloader.log
+ansible/pce.hosts
+ansible/aws.hosts
+ansible/azure.hosts

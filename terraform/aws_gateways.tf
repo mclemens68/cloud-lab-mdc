@@ -37,7 +37,7 @@ resource "aws_ec2_transit_gateway" "tgw" {
   vpn_ecmp_support               = "enable"
   auto_accept_shared_attachments = "enable"
   tags = {
-    Name = replace(replace("${var.aws_config}-tgw", "-",""),"_","")
+    Name = replace(replace("config-files/${terraform.workspace}-aws.yaml-tgw", "-",""),"_","")
   }
 }
 

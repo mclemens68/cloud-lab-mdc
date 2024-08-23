@@ -4,11 +4,25 @@
     name: configure aws hosts
     minute: "0"
     hour: "*" 
-    job: "/usr/bin/ansible-playbook /home/centos/ansible/main.yaml -i /home/centos/ansible/aws.hosts"
+    job: "/usr/bin/ansible-playbook /home/ubuntu/ansible/main.yaml -i /home/ubuntu/ansible/aws.hosts"
 
 - name: move files to azure jumphost every hour
   cron:
     name: move files to azure jumphost
     minute: "0"
     hour: "*"
-    job: "scp -r /home/centos/ansible/ jumphost02.lot48labs.com:/home/centos/"
+    job: "scp -r /home/ubuntu/ansible/ jumphost02.{{ domain }}:/home/ubuntu/"
+
+- name: update all other aws servers and azure jumphost every day at 6am
+  cron:
+    name: update servers
+    minute: "0"
+    hour: "6"
+    job: "/usr/bin/ansible-playbook /home/ubuntu/ansible/update-servers.yaml -i /home/ubuntu/ansible/aws.hosts"
+
+- name: Reboot aws jumphost every day at 7:00am
+  cron:
+    name: reboot server
+    minute: "0"
+    hour: "7"
+    job: "sudo reboot"

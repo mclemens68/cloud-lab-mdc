@@ -1,20 +1,112 @@
 ---
-- hosts: linux
+- name: Setup local hosts files
+  hosts: localhost
+  tags:
+    - never
+    - localhost
+  gather_facts: no
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Generate azure.hosts from template
+      template:
+        src: azure.hosts.j2
+        dest: azure.hosts
+
+    - name: Generate aws.hosts from template
+      template:
+        src: aws.hosts.j2
+        dest: aws.hosts
+
+    - name: Generate pce.hosts from template
+      template:
+        src: pce.hosts.j2
+        dest: pce.hosts
+
+
+- name: Apply shell aliases
+  hosts: all
+  tags:
+    - always
+  vars_files:
+    - vars.yaml
+  roles:
+    - shell_aliases
+
+- name: Setup Linux hosts
+  hosts: linux
+  vars_files:
+    - vars.yaml
   roles:
     - linux
 
-- hosts: aws_jh
+- name: Copy common files
+  hosts: all
+  tags:
+    - always
+  vars_files:
+    - vars.yaml
+  roles:
+    - common_files
+
+- name: Setup AWS jumphost - private IP
+  hosts: aws_jh_priv
+  vars_files:
+    - vars.yaml
   roles:
     - aws-jumphost
 
-- hosts: azure_jh
+- name: Setup AWS jumphost - public IP
+  hosts: aws_jh_pub
+  tags:
+    - never
+    - aws_jh_pub
+  vars_files:
+    - vars.yaml
+  roles:
+    - aws-jumphost
+  tasks:
+    - name: Ensure ansible directory exists
+      ansible.builtin.file:
+        path: /home/{{ ansible_user }}/ansible
+        state: directory
+        mode: '0755'
+    - name: Copy contents to ansible directory on the remote host
+      ansible.posix.synchronize:
+        src: ./  # Adjust this path to the directory you want to copy from, if necessary
+        dest: /home/{{ ansible_user }}/ansible
+        rsync_opts:
+          - "--exclude=roles/pce/files"
+    - name: Install ansible on the remote host if not already installed
+      ansible.builtin.shell: |
+        if ! command -v ansible > /dev/null; then
+          sudo apt update && sudo apt install ansible -y
+        fi
+      args:
+        executable: /bin/bash
+
+- name: Setup Azure jumphost
+  hosts: azure_jh
+  vars_files:
+    - vars.yaml
   roles: 
     - azure-jumphost
+  tasks:
+    - name: Install ansible on the remote host if not already installed
+      ansible.builtin.shell: |
+        if ! command -v ansible > /dev/null; then
+          sudo apt update && sudo apt install ansible -y
+        fi
+      args:
+        executable: /bin/bash
 
-- hosts: pce
-  roles:
-    - pce
-  become: true
+- name: Setup PCE
+  hosts: pce
   tags:
     - never
     - pce
+  vars_files:
+    - vars.yaml
+  roles:
+    - pce
+  become: true

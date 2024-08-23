@@ -28,13 +28,13 @@
     path: /etc/traffic-generator/
     state: directory
     mode: '0755'
-    owner: centos
-    group: centos
+    owner: ubuntu
+    group: ubuntu
   become: true
 
 - name: copy traffic-generator traffic file
-  ansible.builtin.copy:
-    src: traffic.csv
+  template:
+    src: traffic.csv.j2
     dest: /etc/traffic-generator/
 
 - name: run traffic every 10 minutes

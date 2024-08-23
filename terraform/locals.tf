@@ -1,8 +1,32 @@
-# This locals creates a map with the vpc name as the key and the value is the list of subnet IDs.
-# This is used in the transit gateway to attach the subnets
 locals {
-  aws_config   = yamldecode(file("${path.module}/${var.aws_config}"))
-  azure_config = yamldecode(file("${path.module}/${var.azure_config}"))
+
+  aws_config_temp   = yamldecode(file("${path.module}/config-files/${terraform.workspace}-aws.yaml"))
+  azure_config_temp = yamldecode(file("${path.module}/config-files/${terraform.workspace}-azure.yaml"))
+
+# Moved expressions that reference variables here from the yaml configs
+# For aws, set the name of the S3 bucket that will be used for VPC flow logs
+  aws_config = merge(
+    local.aws_config_temp, 
+    { 
+      s3FlowLogArn = "arn:aws:s3:::global-vpc-flow-logs-${var.se_account}" # Not creating an S3 bucket so it's always available and never destroyed.
+      dnsZone = "${var.domain}"
+      public_sshkey = "~/.ssh/${var.sshkey}.pub"
+      private_sshkey = "~/.ssh/${var.sshkey}" 
+      admin_cidr_list = "${var.admin_cidr_list}"
+    }
+  ) 
+
+# For Azure, set the name of the resource group to correspond to the workspace plus the se identifier
+  azure_config = merge(
+    local.azure_config_temp, 
+    { 
+      resourceGroup = "${terraform.workspace}-${var.se_account}"
+      admin_cidr_list = "${var.admin_cidr_list}"
+    }
+  ) 
+
+# Everything below creates a map with the vpc name as the key and the value is the list of subnet IDs.
+# This is used in the transit gateway to attach the subnets
 
   subnet_ids_by_vpc = {
     for vpc_key, _ in local.aws_config.vpcs : vpc_key => [

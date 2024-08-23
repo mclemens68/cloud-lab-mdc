@@ -3,4 +3,11 @@
     name: configure azure hosts
     minute: "0"
     hour: "*" 
-    job: "/usr/bin/ansible-playbook /home/centos/ansible/main.yaml -i /home/centos/ansible/azure.hosts"
+    job: "/usr/bin/ansible-playbook /home/ubuntu/ansible/main.yaml -i /home/ubuntu/ansible/azure.hosts"
+
+- name: update all azure servers every day at 7am
+  cron:
+    name: update servers
+    minute: "0"
+    hour: "7"
+    job: "/usr/bin/ansible-playbook /home/ubuntu/ansible/update-servers.yaml -i /home/ubuntu/ansible/azure.hosts"

@@ -1,0 +1,16 @@
+# Domain name - should be the same as what's defined in ../terraform/terraform.tfvars
+domain: "clemenslabs.com"
+
+# Should only need to modify this if you want to use a different SSH keyfile name
+# in the ~/.ssh directory.
+# Make sure you use an rsa key as Azure vm's don't support ed25519 keys yet
+# The private key at ~/.ssh/{{ sshkey }} will be copied to the jumphosts the first
+# time they are setup
+sshkey: "id_rsa"
+
+# PCE variables
+pce_hostname: "pce"
+org: "clemens-lab"
+user_full_name: "Matt Clemens"
+user_email: "matt.clemens@illumio.com"
+user_pwd: "Illumio123"

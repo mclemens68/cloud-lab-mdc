@@ -1,6 +1,0 @@
-- name: run the ansible playbook every hour
-  cron:
-    name: configure azure hosts
-    minute: "0"
-    hour: "*" 
-    job: "/usr/bin/ansible-playbook /home/centos/ansible/main.yaml -i /home/centos/ansible/azure.hosts"
