@@ -25,14 +25,16 @@ aws_secret_access_key = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 aws_access_key_id = XXXXXXXXXXXXXXXXXXXX  
 aws_secret_access_key = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 
-You'll need a registered domain name. The Terraform setup assumes the domain exists in your personal
-aws account. Easiest thing is to just register a domain via route53 ($14/year) in your personal account.
+You'll need a registered domain name and Hosted Zone setup in route53. The Terraform setup has a variable so you can point to
+either a domain you have registered in your personal aws account, or you can point to your se account.
+Easiest thing is to just register a domain via route53 ($14/year) in your personal account.
 
 Terraform
 ---------
 
-All of the variables to customize a particular setup can be found in terraform/terraform.tfvars. Review this
-file and edit as appropriate for your environment.
+All of the variables to customize a particular setup can be found in terraform/terraform.tfvars.template.
+Copy this file to terraform.tfvars in the same directory and review the entries
+and edit as appropriate for your environment.
 
 The terraform setup relys on making sure you have your workspace set to the same name as the configs
 defined in terraform/config-files. The two profiles currently contained in the repo are "cs-demo"
@@ -60,8 +62,9 @@ A couple things that aren't yet in the terraform setup that you may want to do m
 Ansible
 -------
 
-All of the variables to customize a particular setup can be found in ansible/vars.yaml. Review this
-file and edit as appropriate for your environment.
+All of the variables to customize a particular setup can be found in ansible/vars.yaml.template.
+Copy this file to vars.yaml in the same directory and review the entries
+and edit as appropriate for your environment.
 
 There are several setup scripts that can be utilized to run ansible.
 
