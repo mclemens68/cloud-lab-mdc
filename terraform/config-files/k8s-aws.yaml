@@ -32,7 +32,7 @@ amis:
     owner: '099720109477'
     user: ubuntu
 ec2Instances:
-  k8s-mstr-u::
+  k8s-mstr-u:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: ubuntu22

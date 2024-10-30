@@ -1,12 +1,12 @@
 [wklds-ubuntu]
-k8s-mstr-old.clemenslabs.com
-k8s-wk1-old.clemenslabs.com
-k8s-wk2-old.clemenslabs.com
+k8s-mstr-u.clemenslabs.com
+k8s-wk1-u.clemenslabs.com
+k8s-wk2-u.clemenslabs.com
 
 [wklds-alma]
-k8s-mstr.clemenslabs.com
-k8s-wk1.clemenslabs.com
-k8s-wk2.clemenslabs.com
+k8s-mstr-a.clemenslabs.com
+k8s-wk1-a.clemenslabs.com
+k8s-wk2-a.clemenslabs.com
 
 [wklds-ubuntu:vars]
 ansible_user=ubuntu

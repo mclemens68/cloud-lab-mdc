@@ -14,5 +14,6 @@ workloader.log
 ansible/pce.hosts
 ansible/aws.hosts
 ansible/azure.hosts
+ansible/k8s.hosts
 ansible/vars.yaml
 terraform/terraform.tfvars
