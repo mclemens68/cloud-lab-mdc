@@ -1,0 +1,91 @@
+---
+region: us-east-1
+vpcs:
+  k8s-vpc:
+    logFlows: false
+    dbGroup : false
+    cidrBlock: 192.168.40.0/24
+    subnets:
+      subnet-1:
+        cidrBlock: 192.168.40.0/26
+        az: a
+        public: true
+      subnet-2:
+        cidrBlock: 192.168.40.64/26
+        az: b
+        public: false
+amis:
+  centos7:
+    ami: CentOS Linux 7 x86_64 - 2211
+    owner: '125523088429'
+    user: centos
+  alma9:
+    ami: AlmaLinux OS 9.4.20240509 x86_64
+    owner: '764336703387'
+    user: ec2-user
+  ubuntu22:
+    ami: ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server*
+    owner: '099720109477'
+    user: ubuntu
+  ubuntu24:
+    ami: ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server*
+    owner: '099720109477'
+    user: ubuntu
+ec2Instances:
+  k8s-mstr-old:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: ubuntu22
+    type: t3a.medium
+    volSizeGb: 20
+    publicIP: true
+    tags: {}
+  k8s-wk1-old:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: ubuntu22
+    type: t3a.small
+    volSizeGb: 12
+    publicIP: true
+    tags: {}
+  k8s-wk2-old:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: ubuntu22
+    type: t3a.small
+    volSizeGb: 12
+    publicIP: true
+    tags: {}
+  k8s-mstr:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: alma9
+    type: t3a.medium
+    volSizeGb: 20
+    publicIP: true
+    tags: {}
+  k8s-wk1:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: alma9
+    type: t3a.small
+    volSizeGb: 12
+    publicIP: true
+    tags: {}
+  k8s-wk2:
+    vpc: k8s-vpc
+    subnet: k8s-vpc.subnet-1
+    ami: alma9
+    type: t3a.small
+    volSizeGb: 12
+    publicIP: true
+    tags: {}
+eksClusters: {}
+rdsInstances: {}
+allowedPorts:
+  private:
+  - 0
+  public:
+  - 80
+  - 81
+  - 82

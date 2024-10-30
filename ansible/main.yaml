@@ -23,6 +23,11 @@
         src: pce.hosts.j2
         dest: pce.hosts
 
+    - name: Generate k8s.hosts from template
+      template:
+        src: k8s.hosts.j2
+        dest: k8s.hosts
+
 
 - name: Apply shell aliases
   hosts: all
@@ -39,6 +44,13 @@
     - vars.yaml
   roles:
     - linux
+
+- name: Setup k8s hosts
+  hosts: k8s
+  vars_files:
+    - vars.yaml
+  roles:
+    - k8s
 
 - name: Copy common files
   hosts: all

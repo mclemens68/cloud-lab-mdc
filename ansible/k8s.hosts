@@ -1,0 +1,22 @@
+[wklds-ubuntu]
+k8s-mstr-old.clemenslabs.com
+k8s-wk1-old.clemenslabs.com
+k8s-wk2-old.clemenslabs.com
+
+[wklds-alma]
+k8s-mstr.clemenslabs.com
+k8s-wk1.clemenslabs.com
+k8s-wk2.clemenslabs.com
+
+[wklds-ubuntu:vars]
+ansible_user=ubuntu
+
+[wklds-alma:vars]
+ansible_user=ec2-user
+
+[k8s:children]
+wklds-ubuntu
+wklds-alma
+
+[all:vars]
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
