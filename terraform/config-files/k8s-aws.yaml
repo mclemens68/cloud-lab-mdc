@@ -32,7 +32,7 @@ amis:
     owner: '099720109477'
     user: ubuntu
 ec2Instances:
-  k8s-mstr-old:
+  k8s-mstr-u::
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: ubuntu22
@@ -40,7 +40,7 @@ ec2Instances:
     volSizeGb: 20
     publicIP: true
     tags: {}
-  k8s-wk1-old:
+  k8s-wk1-u:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: ubuntu22
@@ -48,7 +48,7 @@ ec2Instances:
     volSizeGb: 12
     publicIP: true
     tags: {}
-  k8s-wk2-old:
+  k8s-wk2-u:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: ubuntu22
@@ -56,7 +56,7 @@ ec2Instances:
     volSizeGb: 12
     publicIP: true
     tags: {}
-  k8s-mstr:
+  k8s-mstr-a:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: alma9
@@ -64,7 +64,7 @@ ec2Instances:
     volSizeGb: 20
     publicIP: true
     tags: {}
-  k8s-wk1:
+  k8s-wk1-a:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: alma9
@@ -72,7 +72,7 @@ ec2Instances:
     volSizeGb: 12
     publicIP: true
     tags: {}
-  k8s-wk2:
+  k8s-wk2-a:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: alma9
