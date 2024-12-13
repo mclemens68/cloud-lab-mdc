@@ -21,6 +21,7 @@ bash_aliases:
   - alias kube-svc='kubectl get svc --all-namespaces -o wide'
   - alias kube-top-nodes='kubectl top nodes'
   - alias kube-top-pods='kubectl top pods -A --containers --sum'
+  - alias kube-dns-test-internal='kubectl run busybox --image=busybox --restart=Never --rm -it -- nslookup kubernetes.default.svc.cluster.local'
 
   #SSH shortcut
   - alias sshin='f(){ ssh "$1".{{ domain }}; }; f'

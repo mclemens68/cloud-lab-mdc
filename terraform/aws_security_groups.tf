@@ -38,8 +38,8 @@ resource "aws_security_group" "base" {
     for_each = local.aws_config.allowedPorts.private
     content {
       from_port       = ingress.value == 0 ? 0 : ingress.value
-      to_port         = ingress.value == 0 ? 65535 : ingress.value
-      protocol        = "tcp"
+      to_port         = ingress.value == 0 ? 0 : ingress.value
+      protocol        = ingress.value == 0 ? "-1" : "tcp"
       prefix_list_ids = [aws_ec2_managed_prefix_list.rfc1918.id, aws_ec2_managed_prefix_list.admin.id]
     }
   }

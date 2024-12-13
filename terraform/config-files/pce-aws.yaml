@@ -15,10 +15,10 @@ vpcs:
         az: b
         public: false
 amis:
-  centos7:
-    ami: CentOS Linux 7 x86_64 - 2211
-    owner: '125523088429'
-    user: centos
+#  centos7:
+#    ami: CentOS Linux 7 x86_64 - 2211
+#    owner: '125523088429'
+#    user: centos
   alma9:
     ami: AlmaLinux OS 9.4.20240509 x86_64
     owner: '764336703387'
@@ -50,6 +50,14 @@ ec2Instances:
     publicIP: true
     tags: {}
   lw02:
+    vpc: pce-vpc
+    subnet: pce-vpc.subnet-1
+    ami: alma9
+    type: t3a.micro
+    volSizeGb: 8
+    publicIP: true
+    tags: {}
+  nen:
     vpc: pce-vpc
     subnet: pce-vpc.subnet-1
     ami: alma9

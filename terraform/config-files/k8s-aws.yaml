@@ -15,10 +15,6 @@ vpcs:
         az: b
         public: false
 amis:
-  centos7:
-    ami: CentOS Linux 7 x86_64 - 2211
-    owner: '125523088429'
-    user: centos
   alma9:
     ami: AlmaLinux OS 9.4.20240509 x86_64
     owner: '764336703387'
@@ -52,30 +48,6 @@ ec2Instances:
     vpc: k8s-vpc
     subnet: k8s-vpc.subnet-1
     ami: ubuntu22
-    type: t3a.small
-    volSizeGb: 12
-    publicIP: true
-    tags: {}
-  k8s-mstr-a:
-    vpc: k8s-vpc
-    subnet: k8s-vpc.subnet-1
-    ami: alma9
-    type: t3a.medium
-    volSizeGb: 20
-    publicIP: true
-    tags: {}
-  k8s-wk1-a:
-    vpc: k8s-vpc
-    subnet: k8s-vpc.subnet-1
-    ami: alma9
-    type: t3a.small
-    volSizeGb: 12
-    publicIP: true
-    tags: {}
-  k8s-wk2-a:
-    vpc: k8s-vpc
-    subnet: k8s-vpc.subnet-1
-    ami: alma9
     type: t3a.small
     volSizeGb: 12
     publicIP: true

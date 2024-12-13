@@ -9,4 +9,7 @@ private_sshkey: "~/.ssh/id_rsa"
 windowsVMs: {}
 linuxVMs: {}
 managedDBs: {}
-aksClusters: {}
+aksClusters:
+  cluster01:
+    nodeCount: 2
+    adminUserName: "k8sadmin"
