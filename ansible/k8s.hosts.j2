@@ -1,22 +1,19 @@
 [wklds-ubuntu]
-k8s-mstr-u.{{ domain }}
-k8s-wk1-u.{{ domain }}
-k8s-wk2-u.{{ domain }}
+k8s-mstr.{{ domain }}
+k8s-wk1.{{ domain }}
+k8s-wk2.{{ domain }}
 
-[wklds-alma]
-k8s-mstr-a.{{ domain }}
-k8s-wk1-a.{{ domain }}
-k8s-wk2-a.{{ domain }}
+#[wklds-alma]
 
 [wklds-ubuntu:vars]
 ansible_user=ubuntu
 
-[wklds-alma:vars]
-ansible_user=ec2-user
+#[wklds-alma:vars]
+#ansible_user=ec2-user
 
 [k8s:children]
 wklds-ubuntu
-wklds-alma
+#wklds-alma
 
 [all:vars]
 ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
