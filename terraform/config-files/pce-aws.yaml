@@ -2,7 +2,7 @@
 region: us-east-1
 vpcs:
   pce-vpc:
-    logFlows: false
+    logFlows: true
     dbGroup : false
     cidrBlock: 192.168.30.0/24
     subnets:

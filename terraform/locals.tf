@@ -8,7 +8,7 @@ locals {
   aws_config = merge(
     local.aws_config_temp, 
     { 
-      s3FlowLogArn = "arn:aws:s3:::global-vpc-flow-logs-${var.se_account}" # Not creating an S3 bucket so it's always available and never destroyed.
+      s3FlowLogArn = "arn:aws:s3:::global-vpc-flow-logs-se15-us-east-1" # Not creating an S3 bucket so it's always available and never destroyed.
       dnsZone = "${var.domain}"
       public_sshkey = "~/.ssh/${var.sshkey}.pub"
       private_sshkey = "~/.ssh/${var.sshkey}" 
